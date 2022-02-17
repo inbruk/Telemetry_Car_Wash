@@ -1,0 +1,569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_Telemetry_AdressSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityType Name="tblAdressBOBPlace">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Street" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Latitude" Type="money" Nullable="false" />
+          <Property Name="Longitude" Type="money" Nullable="false" />
+          <Property Name="ExternalLink" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAdressBOBRegions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Country" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAdressBOBSmallRegions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_State" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAdressBOBStates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Region" Type="int" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAdressBOBStreet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_City" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAdressDICCountry">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCityBOBCity">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_State" Type="int" />
+          <Property Name="id_SmallCountry" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblAdressBOBPlace_tblAdressBOBStreet">
+          <End Role="tblAdressBOBStreet" Type="Self.tblAdressBOBStreet" Multiplicity="1" />
+          <End Role="tblAdressBOBPlace" Type="Self.tblAdressBOBPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressBOBStreet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblAdressBOBPlace">
+              <PropertyRef Name="id_Street" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAdressBOBRegions_tblAdressDICCountry">
+          <End Role="tblAdressDICCountry" Type="Self.tblAdressDICCountry" Multiplicity="1" />
+          <End Role="tblAdressBOBRegions" Type="Self.tblAdressBOBRegions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressDICCountry">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblAdressBOBRegions">
+              <PropertyRef Name="id_Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAdressBOBSmallRegions_tblAdressBOBStates">
+          <End Role="tblAdressBOBStates" Type="Self.tblAdressBOBStates" Multiplicity="1" />
+          <End Role="tblAdressBOBSmallRegions" Type="Self.tblAdressBOBSmallRegions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressBOBStates">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblAdressBOBSmallRegions">
+              <PropertyRef Name="id_State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAdressBOBStates_tblAdressBOBRegions">
+          <End Role="tblAdressBOBRegions" Type="Self.tblAdressBOBRegions" Multiplicity="1" />
+          <End Role="tblAdressBOBStates" Type="Self.tblAdressBOBStates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressBOBRegions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblAdressBOBStates">
+              <PropertyRef Name="id_Region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAdressBOBStreet_tblCityBOBCity">
+          <End Role="tblCityBOBCity" Type="Self.tblCityBOBCity" Multiplicity="1" />
+          <End Role="tblAdressBOBStreet" Type="Self.tblAdressBOBStreet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCityBOBCity">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblAdressBOBStreet">
+              <PropertyRef Name="id_City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCityBOBCity_tblAdressBOBSmallRegions">
+          <End Role="tblAdressBOBSmallRegions" Type="Self.tblAdressBOBSmallRegions" Multiplicity="0..1" />
+          <End Role="tblCityBOBCity" Type="Self.tblCityBOBCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressBOBSmallRegions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblCityBOBCity">
+              <PropertyRef Name="id_SmallCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCityBOBCity_tblAdressBOBStates">
+          <End Role="tblAdressBOBStates" Type="Self.tblAdressBOBStates" Multiplicity="0..1" />
+          <End Role="tblCityBOBCity" Type="Self.tblCityBOBCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressBOBStates">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblCityBOBCity">
+              <PropertyRef Name="id_State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fnCalculateMoneyRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="X1" Type="money" Mode="In" />
+          <Parameter Name="Y1" Type="money" Mode="In" />
+          <Parameter Name="X2" Type="money" Mode="In" />
+          <Parameter Name="Y2" Type="money" Mode="In" />
+        </Function>
+        <Function Name="spGetNearestCarWashsByMaxRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Lon" Type="money" Mode="In" />
+          <Parameter Name="Lat" Type="money" Mode="In" />
+          <Parameter Name="MaxRange" Type="money" Mode="In" />
+          <Parameter Name="MaxItemsCount" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetNearestCarWashsByRXRY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Lon" Type="money" Mode="In" />
+          <Parameter Name="Lat" Type="money" Mode="In" />
+          <Parameter Name="RangeX" Type="money" Mode="In" />
+          <Parameter Name="RangeY" Type="money" Mode="In" />
+          <Parameter Name="MaxItemsCount" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="DB_Telemetry_AdressSystemModelStoreContainer">
+          <EntitySet Name="tblAdressBOBPlace" EntityType="Self.tblAdressBOBPlace" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="tblAdressBOBRegions" EntityType="Self.tblAdressBOBRegions" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="tblAdressBOBSmallRegions" EntityType="Self.tblAdressBOBSmallRegions" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="tblAdressBOBStates" EntityType="Self.tblAdressBOBStates" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="tblAdressBOBStreet" EntityType="Self.tblAdressBOBStreet" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="tblAdressDICCountry" EntityType="Self.tblAdressDICCountry" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="tblCityBOBCity" EntityType="Self.tblCityBOBCity" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <AssociationSet Name="FK_tblAdressBOBPlace_tblAdressBOBStreet" Association="Self.FK_tblAdressBOBPlace_tblAdressBOBStreet">
+            <End Role="tblAdressBOBStreet" EntitySet="tblAdressBOBStreet" />
+            <End Role="tblAdressBOBPlace" EntitySet="tblAdressBOBPlace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAdressBOBRegions_tblAdressDICCountry" Association="Self.FK_tblAdressBOBRegions_tblAdressDICCountry">
+            <End Role="tblAdressDICCountry" EntitySet="tblAdressDICCountry" />
+            <End Role="tblAdressBOBRegions" EntitySet="tblAdressBOBRegions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAdressBOBSmallRegions_tblAdressBOBStates" Association="Self.FK_tblAdressBOBSmallRegions_tblAdressBOBStates">
+            <End Role="tblAdressBOBStates" EntitySet="tblAdressBOBStates" />
+            <End Role="tblAdressBOBSmallRegions" EntitySet="tblAdressBOBSmallRegions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAdressBOBStates_tblAdressBOBRegions" Association="Self.FK_tblAdressBOBStates_tblAdressBOBRegions">
+            <End Role="tblAdressBOBRegions" EntitySet="tblAdressBOBRegions" />
+            <End Role="tblAdressBOBStates" EntitySet="tblAdressBOBStates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAdressBOBStreet_tblCityBOBCity" Association="Self.FK_tblAdressBOBStreet_tblCityBOBCity">
+            <End Role="tblCityBOBCity" EntitySet="tblCityBOBCity" />
+            <End Role="tblAdressBOBStreet" EntitySet="tblAdressBOBStreet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCityBOBCity_tblAdressBOBSmallRegions" Association="Self.FK_tblCityBOBCity_tblAdressBOBSmallRegions">
+            <End Role="tblAdressBOBSmallRegions" EntitySet="tblAdressBOBSmallRegions" />
+            <End Role="tblCityBOBCity" EntitySet="tblCityBOBCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCityBOBCity_tblAdressBOBStates" Association="Self.FK_tblCityBOBCity_tblAdressBOBStates">
+            <End Role="tblAdressBOBStates" EntitySet="tblAdressBOBStates" />
+            <End Role="tblCityBOBCity" EntitySet="tblCityBOBCity" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_Telemetry_AdressSystemModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="DB_Telemetry_AdressSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAdressBOBPlace" EntityType="DB_Telemetry_AdressSystemModel.tblAdressBOBPlace" />
+          <EntitySet Name="tblAdressBOBRegions" EntityType="DB_Telemetry_AdressSystemModel.tblAdressBOBRegions" />
+          <EntitySet Name="tblAdressBOBSmallRegions" EntityType="DB_Telemetry_AdressSystemModel.tblAdressBOBSmallRegions" />
+          <EntitySet Name="tblAdressBOBStates" EntityType="DB_Telemetry_AdressSystemModel.tblAdressBOBStates" />
+          <EntitySet Name="tblAdressBOBStreet" EntityType="DB_Telemetry_AdressSystemModel.tblAdressBOBStreet" />
+          <EntitySet Name="tblAdressDICCountry" EntityType="DB_Telemetry_AdressSystemModel.tblAdressDICCountry" />
+          <EntitySet Name="tblCityBOBCity" EntityType="DB_Telemetry_AdressSystemModel.tblCityBOBCity" />
+          <AssociationSet Name="FK_tblAdressBOBPlace_tblAdressBOBStreet" Association="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBPlace_tblAdressBOBStreet">
+            <End Role="tblAdressBOBStreet" EntitySet="tblAdressBOBStreet" />
+            <End Role="tblAdressBOBPlace" EntitySet="tblAdressBOBPlace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAdressBOBRegions_tblAdressDICCountry" Association="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBRegions_tblAdressDICCountry">
+            <End Role="tblAdressDICCountry" EntitySet="tblAdressDICCountry" />
+            <End Role="tblAdressBOBRegions" EntitySet="tblAdressBOBRegions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAdressBOBStates_tblAdressBOBRegions" Association="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBStates_tblAdressBOBRegions">
+            <End Role="tblAdressBOBRegions" EntitySet="tblAdressBOBRegions" />
+            <End Role="tblAdressBOBStates" EntitySet="tblAdressBOBStates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAdressBOBSmallRegions_tblAdressBOBStates" Association="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBSmallRegions_tblAdressBOBStates">
+            <End Role="tblAdressBOBStates" EntitySet="tblAdressBOBStates" />
+            <End Role="tblAdressBOBSmallRegions" EntitySet="tblAdressBOBSmallRegions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCityBOBCity_tblAdressBOBSmallRegions" Association="DB_Telemetry_AdressSystemModel.FK_tblCityBOBCity_tblAdressBOBSmallRegions">
+            <End Role="tblAdressBOBSmallRegions" EntitySet="tblAdressBOBSmallRegions" />
+            <End Role="tblCityBOBCity" EntitySet="tblCityBOBCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCityBOBCity_tblAdressBOBStates" Association="DB_Telemetry_AdressSystemModel.FK_tblCityBOBCity_tblAdressBOBStates">
+            <End Role="tblAdressBOBStates" EntitySet="tblAdressBOBStates" />
+            <End Role="tblCityBOBCity" EntitySet="tblCityBOBCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAdressBOBStreet_tblCityBOBCity" Association="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBStreet_tblCityBOBCity">
+            <End Role="tblCityBOBCity" EntitySet="tblCityBOBCity" />
+            <End Role="tblAdressBOBStreet" EntitySet="tblAdressBOBStreet" />
+          </AssociationSet>
+          <FunctionImport Name="spGetNearestCarWashsByRXRY" ReturnType="Collection(DB_Telemetry_AdressSystemModel.spGetNearestCarWashsByRXRY_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Lon" Mode="In" Type="Decimal" />
+            <Parameter Name="Lat" Mode="In" Type="Decimal" />
+            <Parameter Name="RangeX" Mode="In" Type="Decimal" />
+            <Parameter Name="RangeY" Mode="In" Type="Decimal" />
+            <Parameter Name="MaxItemsCount" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetNearestCarWashsByMaxRange" ReturnType="Collection(DB_Telemetry_AdressSystemModel.spGetNearestCarWashsByMaxRange_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Lon" Mode="In" Type="Decimal" />
+            <Parameter Name="Lat" Mode="In" Type="Decimal" />
+            <Parameter Name="MaxRange" Mode="In" Type="Decimal" />
+            <Parameter Name="MaxItemsCount" Mode="In" Type="Int32" />
+          </FunctionImport>
+          </EntityContainer>
+        <ComplexType Name="spGetNearestCarWashsByRXRY_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="604" />
+          <Property Type="Decimal" Name="Longitude" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="Latitude" Nullable="false" Precision="19" />
+          <Property Type="Int16" Name="Rate" Nullable="true" />
+          <Property Type="Int32" Name="IsInFavoritiesList" Nullable="false" />
+          <Property Type="Int32" Name="IsInBlackList" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spGetNearestCarWashsByMaxRange_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="604" />
+          <Property Type="Decimal" Name="Longitude" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="Latitude" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="CurrRange" Nullable="true" Precision="19" />
+          <Property Type="Int16" Name="Rate" Nullable="true" />
+          <Property Type="Int32" Name="IsInFavoritiesList" Nullable="false" />
+          <Property Type="Int32" Name="IsInBlackList" Nullable="false" />
+          <Property Type="Int32" Name="SortCounter" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tblAdressBOBPlace">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Street" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Longitude" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ExternalLink" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="tblAdressBOBStreet" Relationship="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBPlace_tblAdressBOBStreet" FromRole="tblAdressBOBPlace" ToRole="tblAdressBOBStreet" />
+        </EntityType>
+        <EntityType Name="tblAdressBOBRegions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Country" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblAdressDICCountry" Relationship="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBRegions_tblAdressDICCountry" FromRole="tblAdressBOBRegions" ToRole="tblAdressDICCountry" />
+          <NavigationProperty Name="tblAdressBOBStates" Relationship="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBStates_tblAdressBOBRegions" FromRole="tblAdressBOBRegions" ToRole="tblAdressBOBStates" />
+        </EntityType>
+        <EntityType Name="tblAdressBOBSmallRegions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_State" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblAdressBOBStates" Relationship="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBSmallRegions_tblAdressBOBStates" FromRole="tblAdressBOBSmallRegions" ToRole="tblAdressBOBStates" />
+          <NavigationProperty Name="tblCityBOBCity" Relationship="DB_Telemetry_AdressSystemModel.FK_tblCityBOBCity_tblAdressBOBSmallRegions" FromRole="tblAdressBOBSmallRegions" ToRole="tblCityBOBCity" />
+        </EntityType>
+        <EntityType Name="tblAdressBOBStates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Region" Type="Int32" Nullable="false" />
+          <Property Name="StateName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblAdressBOBRegions" Relationship="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBStates_tblAdressBOBRegions" FromRole="tblAdressBOBStates" ToRole="tblAdressBOBRegions" />
+          <NavigationProperty Name="tblAdressBOBSmallRegions" Relationship="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBSmallRegions_tblAdressBOBStates" FromRole="tblAdressBOBStates" ToRole="tblAdressBOBSmallRegions" />
+          <NavigationProperty Name="tblCityBOBCity" Relationship="DB_Telemetry_AdressSystemModel.FK_tblCityBOBCity_tblAdressBOBStates" FromRole="tblAdressBOBStates" ToRole="tblCityBOBCity" />
+        </EntityType>
+        <EntityType Name="tblAdressBOBStreet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_City" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblAdressBOBPlace" Relationship="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBPlace_tblAdressBOBStreet" FromRole="tblAdressBOBStreet" ToRole="tblAdressBOBPlace" />
+          <NavigationProperty Name="tblCityBOBCity" Relationship="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBStreet_tblCityBOBCity" FromRole="tblAdressBOBStreet" ToRole="tblCityBOBCity" />
+        </EntityType>
+        <EntityType Name="tblAdressDICCountry">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblAdressBOBRegions" Relationship="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBRegions_tblAdressDICCountry" FromRole="tblAdressDICCountry" ToRole="tblAdressBOBRegions" />
+        </EntityType>
+        <EntityType Name="tblCityBOBCity">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_State" Type="Int32" />
+          <Property Name="id_SmallCountry" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblAdressBOBSmallRegions" Relationship="DB_Telemetry_AdressSystemModel.FK_tblCityBOBCity_tblAdressBOBSmallRegions" FromRole="tblCityBOBCity" ToRole="tblAdressBOBSmallRegions" />
+          <NavigationProperty Name="tblAdressBOBStates" Relationship="DB_Telemetry_AdressSystemModel.FK_tblCityBOBCity_tblAdressBOBStates" FromRole="tblCityBOBCity" ToRole="tblAdressBOBStates" />
+          <NavigationProperty Name="tblAdressBOBStreet" Relationship="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBStreet_tblCityBOBCity" FromRole="tblCityBOBCity" ToRole="tblAdressBOBStreet" />
+        </EntityType>
+        <Association Name="FK_tblAdressBOBPlace_tblAdressBOBStreet">
+          <End Type="DB_Telemetry_AdressSystemModel.tblAdressBOBStreet" Role="tblAdressBOBStreet" Multiplicity="1" />
+          <End Type="DB_Telemetry_AdressSystemModel.tblAdressBOBPlace" Role="tblAdressBOBPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressBOBStreet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblAdressBOBPlace">
+              <PropertyRef Name="id_Street" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAdressBOBRegions_tblAdressDICCountry">
+          <End Type="DB_Telemetry_AdressSystemModel.tblAdressDICCountry" Role="tblAdressDICCountry" Multiplicity="1" />
+          <End Type="DB_Telemetry_AdressSystemModel.tblAdressBOBRegions" Role="tblAdressBOBRegions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressDICCountry">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblAdressBOBRegions">
+              <PropertyRef Name="id_Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAdressBOBStates_tblAdressBOBRegions">
+          <End Type="DB_Telemetry_AdressSystemModel.tblAdressBOBRegions" Role="tblAdressBOBRegions" Multiplicity="1" />
+          <End Type="DB_Telemetry_AdressSystemModel.tblAdressBOBStates" Role="tblAdressBOBStates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressBOBRegions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblAdressBOBStates">
+              <PropertyRef Name="id_Region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAdressBOBSmallRegions_tblAdressBOBStates">
+          <End Type="DB_Telemetry_AdressSystemModel.tblAdressBOBStates" Role="tblAdressBOBStates" Multiplicity="1" />
+          <End Type="DB_Telemetry_AdressSystemModel.tblAdressBOBSmallRegions" Role="tblAdressBOBSmallRegions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressBOBStates">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblAdressBOBSmallRegions">
+              <PropertyRef Name="id_State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCityBOBCity_tblAdressBOBSmallRegions">
+          <End Type="DB_Telemetry_AdressSystemModel.tblAdressBOBSmallRegions" Role="tblAdressBOBSmallRegions" Multiplicity="0..1" />
+          <End Type="DB_Telemetry_AdressSystemModel.tblCityBOBCity" Role="tblCityBOBCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressBOBSmallRegions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblCityBOBCity">
+              <PropertyRef Name="id_SmallCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCityBOBCity_tblAdressBOBStates">
+          <End Type="DB_Telemetry_AdressSystemModel.tblAdressBOBStates" Role="tblAdressBOBStates" Multiplicity="0..1" />
+          <End Type="DB_Telemetry_AdressSystemModel.tblCityBOBCity" Role="tblCityBOBCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdressBOBStates">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblCityBOBCity">
+              <PropertyRef Name="id_State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAdressBOBStreet_tblCityBOBCity">
+          <End Type="DB_Telemetry_AdressSystemModel.tblCityBOBCity" Role="tblCityBOBCity" Multiplicity="1" />
+          <End Type="DB_Telemetry_AdressSystemModel.tblAdressBOBStreet" Role="tblAdressBOBStreet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCityBOBCity">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblAdressBOBStreet">
+              <PropertyRef Name="id_City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="DB_Telemetry_AdressSystemModelStoreContainer" CdmEntityContainer="DB_Telemetry_AdressSystemEntities">
+          <EntitySetMapping Name="tblAdressBOBPlace">
+            <EntityTypeMapping TypeName="DB_Telemetry_AdressSystemModel.tblAdressBOBPlace">
+              <MappingFragment StoreEntitySet="tblAdressBOBPlace">
+                <ScalarProperty Name="ExternalLink" ColumnName="ExternalLink" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id_Street" ColumnName="id_Street" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdressBOBRegions">
+            <EntityTypeMapping TypeName="DB_Telemetry_AdressSystemModel.tblAdressBOBRegions">
+              <MappingFragment StoreEntitySet="tblAdressBOBRegions">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id_Country" ColumnName="id_Country" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdressBOBSmallRegions">
+            <EntityTypeMapping TypeName="DB_Telemetry_AdressSystemModel.tblAdressBOBSmallRegions">
+              <MappingFragment StoreEntitySet="tblAdressBOBSmallRegions">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id_State" ColumnName="id_State" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdressBOBStates">
+            <EntityTypeMapping TypeName="DB_Telemetry_AdressSystemModel.tblAdressBOBStates">
+              <MappingFragment StoreEntitySet="tblAdressBOBStates">
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="id_Region" ColumnName="id_Region" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdressBOBStreet">
+            <EntityTypeMapping TypeName="DB_Telemetry_AdressSystemModel.tblAdressBOBStreet">
+              <MappingFragment StoreEntitySet="tblAdressBOBStreet">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id_City" ColumnName="id_City" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdressDICCountry">
+            <EntityTypeMapping TypeName="DB_Telemetry_AdressSystemModel.tblAdressDICCountry">
+              <MappingFragment StoreEntitySet="tblAdressDICCountry">
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCityBOBCity">
+            <EntityTypeMapping TypeName="DB_Telemetry_AdressSystemModel.tblCityBOBCity">
+              <MappingFragment StoreEntitySet="tblCityBOBCity">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id_SmallCountry" ColumnName="id_SmallCountry" />
+                <ScalarProperty Name="id_State" ColumnName="id_State" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetNearestCarWashsByRXRY" FunctionName="DB_Telemetry_AdressSystemModel.Store.spGetNearestCarWashsByRXRY">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_Telemetry_AdressSystemModel.spGetNearestCarWashsByRXRY_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="IsInFavoritiesList" ColumnName="IsInFavoritiesList" />
+                <ScalarProperty Name="IsInBlackList" ColumnName="IsInBlackList" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetNearestCarWashsByMaxRange" FunctionName="DB_Telemetry_AdressSystemModel.Store.spGetNearestCarWashsByMaxRange">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_Telemetry_AdressSystemModel.spGetNearestCarWashsByMaxRange_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="CurrRange" ColumnName="CurrRange" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="IsInFavoritiesList" ColumnName="IsInFavoritiesList" />
+                <ScalarProperty Name="IsInBlackList" ColumnName="IsInBlackList" />
+                <ScalarProperty Name="SortCounter" ColumnName="SortCounter" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams />
+  </Designer>
+</edmx:Edmx>

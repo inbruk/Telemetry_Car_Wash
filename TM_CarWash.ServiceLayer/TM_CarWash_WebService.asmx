@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="C#" CodeBehind="TM_CarWash_WebService.asmx.cs" Class="TM_CarWash.ServiceLayer.TM_CarWash_WebService" %>

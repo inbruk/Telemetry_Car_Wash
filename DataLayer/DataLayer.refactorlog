@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="52601022-490e-42ad-a554-b6a25a65edc6" ChangeDateTime="11/04/2013 12:48:11">
+    <Property Name="ElementName" Value="[dbo].[CarWashLinks].[GUIDLink]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CarWashLinks]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExternalLink" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f10f5520-0a54-4c2a-b699-357a637ab561" ChangeDateTime="11/05/2013 10:24:55">
+    <Property Name="ElementName" Value="[dbo].[tblUsers2CarWashListType].[Value]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblUsers2CarWashListType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+</Operations>

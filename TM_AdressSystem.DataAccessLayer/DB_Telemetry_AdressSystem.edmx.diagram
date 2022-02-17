@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e6551f82299431f93e57a01fdda6bf2" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_Telemetry_AdressSystemModel.tblAdressBOBPlace" Width="1.5" PointX="14.25" PointY="1" />
+        <EntityTypeShape EntityType="DB_Telemetry_AdressSystemModel.tblAdressBOBRegions" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="DB_Telemetry_AdressSystemModel.tblAdressBOBSmallRegions" Width="1.5" PointX="7.5" PointY="1.125" />
+        <EntityTypeShape EntityType="DB_Telemetry_AdressSystemModel.tblAdressBOBStates" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="DB_Telemetry_AdressSystemModel.tblAdressBOBStreet" Width="1.5" PointX="12" PointY="1.125" />
+        <EntityTypeShape EntityType="DB_Telemetry_AdressSystemModel.tblAdressDICCountry" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="DB_Telemetry_AdressSystemModel.tblCityBOBCity" Width="1.5" PointX="9.75" PointY="1" />
+        <AssociationConnector Association="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBPlace_tblAdressBOBStreet" />
+        <AssociationConnector Association="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBRegions_tblAdressDICCountry" />
+        <AssociationConnector Association="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBStates_tblAdressBOBRegions" />
+        <AssociationConnector Association="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBSmallRegions_tblAdressBOBStates" />
+        <AssociationConnector Association="DB_Telemetry_AdressSystemModel.FK_tblCityBOBCity_tblAdressBOBSmallRegions" />
+        <AssociationConnector Association="DB_Telemetry_AdressSystemModel.FK_tblCityBOBCity_tblAdressBOBStates" />
+        <AssociationConnector Association="DB_Telemetry_AdressSystemModel.FK_tblAdressBOBStreet_tblCityBOBCity" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

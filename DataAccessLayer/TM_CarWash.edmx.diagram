@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="845f9c43b33f4924b6b4857cda871015" Name="Diagram1" SnapToGrid="true">
+        <EntityTypeShape EntityType="TM_CarWashModel.tblCarWashLinks" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="TM_CarWashModel.tblUsers" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="TM_CarWashModel.tblUsers2CarWashList" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="TM_CarWashModel.tblUsers2CarWashListType" Width="1.5" PointX="0.75" PointY="4.5" />
+        <AssociationConnector Association="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblCarWashLinks" />
+        <AssociationConnector Association="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblUsers" />
+        <AssociationConnector Association="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblUsers2CarWashListType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

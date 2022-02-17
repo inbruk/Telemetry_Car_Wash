@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TM_CarWash.DataLayer", "DataLayer\TM_CarWash.DataLayer.sqlproj", "{0DE10E77-53D7-47DD-882E-6F4F850B861F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM_CarWash.DataAccessLayer", "DataAccessLayer\TM_CarWash.DataAccessLayer.csproj", "{04E37D30-B569-4277-AA69-4C0E64AF94D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM_CarWash.BusinessLogicLayer", "TM_CarWash.BusinessLogicLayer\TM_CarWash.BusinessLogicLayer.csproj", "{C5989405-01AB-4E06-97AE-C1642E8FA79F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM_CarWash.ServiceLayer", "TM_CarWash.ServiceLayer\TM_CarWash.ServiceLayer.csproj", "{004EA693-B34C-4898-97CF-C5111B51CED4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM_CarWash.ServiceTester", "TM_CarWash.ServiceTester\TM_CarWash.ServiceTester.csproj", "{28CC8B40-327C-4012-B6C9-4EBE7F2449E2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{004EA693-B34C-4898-97CF-C5111B51CED4} = {004EA693-B34C-4898-97CF-C5111B51CED4}
+	EndProjectSection
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TM_AdressSystem.DataLayer", "TM_Adress.DataLayer\TM_AdressSystem.DataLayer.sqlproj", "{5EB6A579-139D-4573-A5AB-AFE33EBBAF04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM_AdressSystem.DataAccessLayer", "TM_AdressSystem.DataAccessLayer\TM_AdressSystem.DataAccessLayer.csproj", "{947A0AA0-3BF8-4B20-A6D4-27FE437F0C7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM_AdressSystem.ServiceLayer", "TM_AdressSystem.ServiceLayer\TM_AdressSystem.ServiceLayer.csproj", "{29DC5046-9F23-409C-88E3-AD535ACF1C3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM_AdressSystem.BusinessLogicLayer", "TM_AdressSystem.BusinessLogicLayer\TM_AdressSystem.BusinessLogicLayer.csproj", "{6874774D-F63A-4B37-965B-425EB9E92CE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0DE10E77-53D7-47DD-882E-6F4F850B861F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DE10E77-53D7-47DD-882E-6F4F850B861F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DE10E77-53D7-47DD-882E-6F4F850B861F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0DE10E77-53D7-47DD-882E-6F4F850B861F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DE10E77-53D7-47DD-882E-6F4F850B861F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DE10E77-53D7-47DD-882E-6F4F850B861F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{04E37D30-B569-4277-AA69-4C0E64AF94D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04E37D30-B569-4277-AA69-4C0E64AF94D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04E37D30-B569-4277-AA69-4C0E64AF94D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04E37D30-B569-4277-AA69-4C0E64AF94D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5989405-01AB-4E06-97AE-C1642E8FA79F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5989405-01AB-4E06-97AE-C1642E8FA79F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5989405-01AB-4E06-97AE-C1642E8FA79F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5989405-01AB-4E06-97AE-C1642E8FA79F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{004EA693-B34C-4898-97CF-C5111B51CED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{004EA693-B34C-4898-97CF-C5111B51CED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{004EA693-B34C-4898-97CF-C5111B51CED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{004EA693-B34C-4898-97CF-C5111B51CED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28CC8B40-327C-4012-B6C9-4EBE7F2449E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28CC8B40-327C-4012-B6C9-4EBE7F2449E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28CC8B40-327C-4012-B6C9-4EBE7F2449E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28CC8B40-327C-4012-B6C9-4EBE7F2449E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EB6A579-139D-4573-A5AB-AFE33EBBAF04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EB6A579-139D-4573-A5AB-AFE33EBBAF04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EB6A579-139D-4573-A5AB-AFE33EBBAF04}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5EB6A579-139D-4573-A5AB-AFE33EBBAF04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EB6A579-139D-4573-A5AB-AFE33EBBAF04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EB6A579-139D-4573-A5AB-AFE33EBBAF04}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{947A0AA0-3BF8-4B20-A6D4-27FE437F0C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{947A0AA0-3BF8-4B20-A6D4-27FE437F0C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{947A0AA0-3BF8-4B20-A6D4-27FE437F0C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{947A0AA0-3BF8-4B20-A6D4-27FE437F0C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29DC5046-9F23-409C-88E3-AD535ACF1C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29DC5046-9F23-409C-88E3-AD535ACF1C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29DC5046-9F23-409C-88E3-AD535ACF1C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29DC5046-9F23-409C-88E3-AD535ACF1C3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6874774D-F63A-4B37-965B-425EB9E92CE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6874774D-F63A-4B37-965B-425EB9E92CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6874774D-F63A-4B37-965B-425EB9E92CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6874774D-F63A-4B37-965B-425EB9E92CE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBC02AB6-65BA-4C40-A40A-A7A58F382AC4}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TM_CarWashModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCarWashLinks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExternalLink" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Rate" Type="smallint" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="tblUsers2CarWashList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_User" Type="int" Nullable="false" />
+          <Property Name="id_CarWashLink" Type="int" Nullable="false" />
+          <Property Name="id_Users2CarWashListType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUsers2CarWashListType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblUsers2CarWashList_To_tblCarWashLinks">
+          <End Role="tblCarWashLinks" Type="Self.tblCarWashLinks" Multiplicity="1" />
+          <End Role="tblUsers2CarWashList" Type="Self.tblUsers2CarWashList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCarWashLinks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsers2CarWashList">
+              <PropertyRef Name="id_CarWashLink" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsers2CarWashList_To_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblUsers2CarWashList" Type="Self.tblUsers2CarWashList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsers2CarWashList">
+              <PropertyRef Name="id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsers2CarWashList_To_tblUsers2CarWashListType">
+          <End Role="tblUsers2CarWashListType" Type="Self.tblUsers2CarWashListType" Multiplicity="1" />
+          <End Role="tblUsers2CarWashList" Type="Self.tblUsers2CarWashList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers2CarWashListType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsers2CarWashList">
+              <PropertyRef Name="id_Users2CarWashListType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TM_CarWashModelStoreContainer">
+          <EntitySet Name="tblCarWashLinks" EntityType="Self.tblCarWashLinks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers2CarWashList" EntityType="Self.tblUsers2CarWashList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers2CarWashListType" EntityType="Self.tblUsers2CarWashListType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblUsers2CarWashList_To_tblCarWashLinks" Association="Self.FK_tblUsers2CarWashList_To_tblCarWashLinks">
+            <End Role="tblCarWashLinks" EntitySet="tblCarWashLinks" />
+            <End Role="tblUsers2CarWashList" EntitySet="tblUsers2CarWashList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsers2CarWashList_To_tblUsers" Association="Self.FK_tblUsers2CarWashList_To_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUsers2CarWashList" EntitySet="tblUsers2CarWashList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsers2CarWashList_To_tblUsers2CarWashListType" Association="Self.FK_tblUsers2CarWashList_To_tblUsers2CarWashListType">
+            <End Role="tblUsers2CarWashListType" EntitySet="tblUsers2CarWashListType" />
+            <End Role="tblUsers2CarWashList" EntitySet="tblUsers2CarWashList" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TM_CarWashModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TM_CarWashEFContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCarWashLinks" EntityType="TM_CarWashModel.tblCarWashLinks" />
+          <EntitySet Name="tblUsers" EntityType="TM_CarWashModel.tblUsers" />
+          <EntitySet Name="tblUsers2CarWashList" EntityType="TM_CarWashModel.tblUsers2CarWashList" />
+          <EntitySet Name="tblUsers2CarWashListType" EntityType="TM_CarWashModel.tblUsers2CarWashListType" />
+          <AssociationSet Name="FK_tblUsers2CarWashList_To_tblCarWashLinks" Association="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblCarWashLinks">
+            <End Role="tblCarWashLinks" EntitySet="tblCarWashLinks" />
+            <End Role="tblUsers2CarWashList" EntitySet="tblUsers2CarWashList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsers2CarWashList_To_tblUsers" Association="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUsers2CarWashList" EntitySet="tblUsers2CarWashList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsers2CarWashList_To_tblUsers2CarWashListType" Association="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblUsers2CarWashListType">
+            <End Role="tblUsers2CarWashListType" EntitySet="tblUsers2CarWashListType" />
+            <End Role="tblUsers2CarWashList" EntitySet="tblUsers2CarWashList" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblCarWashLinks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExternalLink" Type="Guid" Nullable="false" />
+          <Property Name="Rate" Type="Int16" />
+          <NavigationProperty Name="tblUsers2CarWashList" Relationship="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblCarWashLinks" FromRole="tblCarWashLinks" ToRole="tblUsers2CarWashList" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="tblUsers2CarWashList" Relationship="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblUsers" FromRole="tblUsers" ToRole="tblUsers2CarWashList" />
+        </EntityType>
+        <EntityType Name="tblUsers2CarWashList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_User" Type="Int32" Nullable="false" />
+          <Property Name="id_CarWashLink" Type="Int32" Nullable="false" />
+          <Property Name="id_Users2CarWashListType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCarWashLinks" Relationship="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblCarWashLinks" FromRole="tblUsers2CarWashList" ToRole="tblCarWashLinks" />
+          <NavigationProperty Name="tblUsers" Relationship="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblUsers" FromRole="tblUsers2CarWashList" ToRole="tblUsers" />
+          <NavigationProperty Name="tblUsers2CarWashListType" Relationship="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblUsers2CarWashListType" FromRole="tblUsers2CarWashList" ToRole="tblUsers2CarWashListType" />
+        </EntityType>
+        <EntityType Name="tblUsers2CarWashListType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUsers2CarWashList" Relationship="TM_CarWashModel.FK_tblUsers2CarWashList_To_tblUsers2CarWashListType" FromRole="tblUsers2CarWashListType" ToRole="tblUsers2CarWashList" />
+        </EntityType>
+        <Association Name="FK_tblUsers2CarWashList_To_tblCarWashLinks">
+          <End Type="TM_CarWashModel.tblCarWashLinks" Role="tblCarWashLinks" Multiplicity="1" />
+          <End Type="TM_CarWashModel.tblUsers2CarWashList" Role="tblUsers2CarWashList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCarWashLinks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsers2CarWashList">
+              <PropertyRef Name="id_CarWashLink" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsers2CarWashList_To_tblUsers">
+          <End Type="TM_CarWashModel.tblUsers" Role="tblUsers" Multiplicity="1" />
+          <End Type="TM_CarWashModel.tblUsers2CarWashList" Role="tblUsers2CarWashList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsers2CarWashList">
+              <PropertyRef Name="id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsers2CarWashList_To_tblUsers2CarWashListType">
+          <End Type="TM_CarWashModel.tblUsers2CarWashListType" Role="tblUsers2CarWashListType" Multiplicity="1" />
+          <End Type="TM_CarWashModel.tblUsers2CarWashList" Role="tblUsers2CarWashList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers2CarWashListType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsers2CarWashList">
+              <PropertyRef Name="id_Users2CarWashListType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TM_CarWashModelStoreContainer" CdmEntityContainer="TM_CarWashEFContext">
+          <EntitySetMapping Name="tblCarWashLinks">
+            <EntityTypeMapping TypeName="TM_CarWashModel.tblCarWashLinks">
+              <MappingFragment StoreEntitySet="tblCarWashLinks">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ExternalLink" ColumnName="ExternalLink" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="TM_CarWashModel.tblUsers">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers2CarWashList">
+            <EntityTypeMapping TypeName="TM_CarWashModel.tblUsers2CarWashList">
+              <MappingFragment StoreEntitySet="tblUsers2CarWashList">
+                <ScalarProperty Name="id_Users2CarWashListType" ColumnName="id_Users2CarWashListType" />
+                <ScalarProperty Name="id_CarWashLink" ColumnName="id_CarWashLink" />
+                <ScalarProperty Name="id_User" ColumnName="id_User" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers2CarWashListType">
+            <EntityTypeMapping TypeName="TM_CarWashModel.tblUsers2CarWashListType">
+              <MappingFragment StoreEntitySet="tblUsers2CarWashListType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://microsoft.com/webservices/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://microsoft.com/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/webservices/">
+      <s:element name="AddUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllUsers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllUsersResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddToCarWashBlackList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="carWashId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddToCarWashBlackListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveFromCarWashBlackList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="carWashId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveFromCarWashBlackListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsExistsInCarWashBlackList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="carWashId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsExistsInCarWashBlackListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddToCarWashFavoritiesList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="carWashId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddToCarWashFavoritiesListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveFromCarWashFavoritiesList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="carWashId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveFromCarWashFavoritiesListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsExistsInCarWashFavoritiesList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="carWashId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsExistsInCarWashFavoritiesListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UserVoteForCarWash">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="carWashId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userRating" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserVoteForCarWashResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsUserForCarWashVoteExists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="carWashId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsUserForCarWashVoteExistsResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="AddUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetAllUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddToCarWashBlackListSoapIn">
+    <wsdl:part name="parameters" element="tns:AddToCarWashBlackList" />
+  </wsdl:message>
+  <wsdl:message name="AddToCarWashBlackListSoapOut">
+    <wsdl:part name="parameters" element="tns:AddToCarWashBlackListResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFromCarWashBlackListSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveFromCarWashBlackList" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFromCarWashBlackListSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveFromCarWashBlackListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsExistsInCarWashBlackListSoapIn">
+    <wsdl:part name="parameters" element="tns:IsExistsInCarWashBlackList" />
+  </wsdl:message>
+  <wsdl:message name="IsExistsInCarWashBlackListSoapOut">
+    <wsdl:part name="parameters" element="tns:IsExistsInCarWashBlackListResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddToCarWashFavoritiesListSoapIn">
+    <wsdl:part name="parameters" element="tns:AddToCarWashFavoritiesList" />
+  </wsdl:message>
+  <wsdl:message name="AddToCarWashFavoritiesListSoapOut">
+    <wsdl:part name="parameters" element="tns:AddToCarWashFavoritiesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFromCarWashFavoritiesListSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveFromCarWashFavoritiesList" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFromCarWashFavoritiesListSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveFromCarWashFavoritiesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsExistsInCarWashFavoritiesListSoapIn">
+    <wsdl:part name="parameters" element="tns:IsExistsInCarWashFavoritiesList" />
+  </wsdl:message>
+  <wsdl:message name="IsExistsInCarWashFavoritiesListSoapOut">
+    <wsdl:part name="parameters" element="tns:IsExistsInCarWashFavoritiesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserVoteForCarWashSoapIn">
+    <wsdl:part name="parameters" element="tns:UserVoteForCarWash" />
+  </wsdl:message>
+  <wsdl:message name="UserVoteForCarWashSoapOut">
+    <wsdl:part name="parameters" element="tns:UserVoteForCarWashResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsUserForCarWashVoteExistsSoapIn">
+    <wsdl:part name="parameters" element="tns:IsUserForCarWashVoteExists" />
+  </wsdl:message>
+  <wsdl:message name="IsUserForCarWashVoteExistsSoapOut">
+    <wsdl:part name="parameters" element="tns:IsUserForCarWashVoteExistsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TM_CarWash_WebServiceSoap">
+    <wsdl:operation name="AddUser">
+      <wsdl:input message="tns:AddUserSoapIn" />
+      <wsdl:output message="tns:AddUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input message="tns:GetAllUsersSoapIn" />
+      <wsdl:output message="tns:GetAllUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddToCarWashBlackList">
+      <wsdl:input message="tns:AddToCarWashBlackListSoapIn" />
+      <wsdl:output message="tns:AddToCarWashBlackListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromCarWashBlackList">
+      <wsdl:input message="tns:RemoveFromCarWashBlackListSoapIn" />
+      <wsdl:output message="tns:RemoveFromCarWashBlackListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsExistsInCarWashBlackList">
+      <wsdl:input message="tns:IsExistsInCarWashBlackListSoapIn" />
+      <wsdl:output message="tns:IsExistsInCarWashBlackListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddToCarWashFavoritiesList">
+      <wsdl:input message="tns:AddToCarWashFavoritiesListSoapIn" />
+      <wsdl:output message="tns:AddToCarWashFavoritiesListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromCarWashFavoritiesList">
+      <wsdl:input message="tns:RemoveFromCarWashFavoritiesListSoapIn" />
+      <wsdl:output message="tns:RemoveFromCarWashFavoritiesListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsExistsInCarWashFavoritiesList">
+      <wsdl:input message="tns:IsExistsInCarWashFavoritiesListSoapIn" />
+      <wsdl:output message="tns:IsExistsInCarWashFavoritiesListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserVoteForCarWash">
+      <wsdl:input message="tns:UserVoteForCarWashSoapIn" />
+      <wsdl:output message="tns:UserVoteForCarWashSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserForCarWashVoteExists">
+      <wsdl:input message="tns:IsUserForCarWashVoteExistsSoapIn" />
+      <wsdl:output message="tns:IsUserForCarWashVoteExistsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TM_CarWash_WebServiceSoap" type="tns:TM_CarWash_WebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddUser">
+      <soap:operation soapAction="http://microsoft.com/webservices/AddUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap:operation soapAction="http://microsoft.com/webservices/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddToCarWashBlackList">
+      <soap:operation soapAction="http://microsoft.com/webservices/AddToCarWashBlackList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromCarWashBlackList">
+      <soap:operation soapAction="http://microsoft.com/webservices/RemoveFromCarWashBlackList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsExistsInCarWashBlackList">
+      <soap:operation soapAction="http://microsoft.com/webservices/IsExistsInCarWashBlackList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddToCarWashFavoritiesList">
+      <soap:operation soapAction="http://microsoft.com/webservices/AddToCarWashFavoritiesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromCarWashFavoritiesList">
+      <soap:operation soapAction="http://microsoft.com/webservices/RemoveFromCarWashFavoritiesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsExistsInCarWashFavoritiesList">
+      <soap:operation soapAction="http://microsoft.com/webservices/IsExistsInCarWashFavoritiesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserVoteForCarWash">
+      <soap:operation soapAction="http://microsoft.com/webservices/UserVoteForCarWash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserForCarWashVoteExists">
+      <soap:operation soapAction="http://microsoft.com/webservices/IsUserForCarWashVoteExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TM_CarWash_WebServiceSoap12" type="tns:TM_CarWash_WebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddUser">
+      <soap12:operation soapAction="http://microsoft.com/webservices/AddUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap12:operation soapAction="http://microsoft.com/webservices/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddToCarWashBlackList">
+      <soap12:operation soapAction="http://microsoft.com/webservices/AddToCarWashBlackList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromCarWashBlackList">
+      <soap12:operation soapAction="http://microsoft.com/webservices/RemoveFromCarWashBlackList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsExistsInCarWashBlackList">
+      <soap12:operation soapAction="http://microsoft.com/webservices/IsExistsInCarWashBlackList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddToCarWashFavoritiesList">
+      <soap12:operation soapAction="http://microsoft.com/webservices/AddToCarWashFavoritiesList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromCarWashFavoritiesList">
+      <soap12:operation soapAction="http://microsoft.com/webservices/RemoveFromCarWashFavoritiesList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsExistsInCarWashFavoritiesList">
+      <soap12:operation soapAction="http://microsoft.com/webservices/IsExistsInCarWashFavoritiesList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserVoteForCarWash">
+      <soap12:operation soapAction="http://microsoft.com/webservices/UserVoteForCarWash" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserForCarWashVoteExists">
+      <soap12:operation soapAction="http://microsoft.com/webservices/IsUserForCarWashVoteExists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TM_CarWash_WebService">
+    <wsdl:port name="TM_CarWash_WebServiceSoap" binding="tns:TM_CarWash_WebServiceSoap">
+      <soap:address location="http://localhost:41948/TM_CarWash_WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TM_CarWash_WebServiceSoap12" binding="tns:TM_CarWash_WebServiceSoap12">
+      <soap12:address location="http://localhost:41948/TM_CarWash_WebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
